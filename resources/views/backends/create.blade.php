@@ -32,6 +32,7 @@ label{
 </style>
 <body>
 <form method="post" action="{{ route('backends.store') }}">
+    {{csrf_field()}}
 <div class = "container">
 <h2>Employee Details</h2>
 <div class ="form-group">

@@ -26,6 +26,8 @@ Route::group(['middleware' => ['auth', 'role:admin']], function() {
     Route::resource('bank', 'BankController');
     Route::resource('backends', 'BackendController');
     Route::get('/search', 'BackendController@search');
+    Route::get('/search-result', 'BackendController@searchResult');
+
     Route::resource('fieldexecutive', 'FieldexecutiveController');
     Route::resource('events', 'EventController');
     Route::get('addeventurl', 'EventController@display');

@@ -16,7 +16,7 @@
     }
     </style>
     <body>
-    <form method="get" action ="/backends" role ="search">
+    <form method="get" action ="/search-result" role ="search">
     {{ csrf_field() }}
         <div class ="container">
         <h2><u>Search Employee's </u></h2>
