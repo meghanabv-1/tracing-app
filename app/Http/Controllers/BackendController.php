@@ -229,7 +229,7 @@ class BackendController extends Controller
 
 public function search(Request $request){
   $search = $request->get('search');
-  $backend = DB::table('backends')->where('employee_id', 'like', '%' .$search. '%');
+  $backend = DB::table('backends')->where('employee_id', 'like', '%' .$search. '%')->get();
   return view('backends.search');
 }
 

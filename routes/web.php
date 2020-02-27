@@ -24,6 +24,8 @@ Route::group(['middleware' => ['auth', 'role:admin']], function() {
     Route::resource('executive', 'ExecutiveController');
     Route::resource('teamlead', 'TeamleadController');
     Route::resource('bank', 'BankController');
+    Route::resource('backends', 'BackendController');
+    Route::get('/search', 'BackendController@search');
     Route::resource('fieldexecutive', 'FieldexecutiveController');
     Route::resource('events', 'EventController');
     Route::get('addeventurl', 'EventController@display');
@@ -85,3 +87,6 @@ Route::get('chart', 'ChartController@index');
     Route::post('send', 'MailController@send');
     Route::get('/index', array('as' => 'index','uses' => 'AlbumsController@getList'));
     Route::get('/album/{id}', array('as' => 'show_album','uses' => 'AlbumsController@getAlbum'));
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

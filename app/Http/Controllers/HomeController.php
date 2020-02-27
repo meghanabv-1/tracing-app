@@ -36,7 +36,7 @@ class HomeController extends Controller
      */
 
     public function dashboard(){
-        $month = date('m-1');
+        $month = date('m');
          $teamleadnames = Overall::whereRaw('Month(created_at)='.$month)
                             ->get()->pluck('teamleadname');
         $collections = Overall::whereRaw('Month(created_at)='.$month)
@@ -68,7 +68,7 @@ return view('admin/dashboard',compact('chart'));
         $tracers=Tracer::all()->pluck('tracername','id');
         $fieldexecutives=Fieldexecutive::all()->pluck('executivename','id');
         return view('home', compact('teamleads', 'banks', 'tracers', 'fieldexecutives'));
-    }
+ }
 
       public function company()
       {
@@ -79,7 +79,7 @@ return view('admin/dashboard',compact('chart'));
       {
           //
       }
-}
+    }
      
 
 

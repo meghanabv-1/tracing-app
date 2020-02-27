@@ -21,7 +21,6 @@
       </div><br />
     @endif
       <form method="post" action="{{ route('overalls.update', $overall->id) }}">
-        @method('PATCH')
         @csrf
         <div class="form-group">
         <label for="name">teamlead:</label>
@@ -67,6 +66,7 @@
               <label for="date">date:</label>
               <input type="date" class="form-control" name="date"/>
           </div>
+          {{method_field('PUT')}}
           <button type="submit" class="btn btn-primary">Add</button>
       </form>
   </div>
