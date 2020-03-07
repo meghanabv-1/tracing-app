@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 Use Illuminate\Validation\ValidationException;
+use App\LoginOTP;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendOTP;
+use Hash;
 
 class LoginController extends Controller
 {
@@ -63,12 +67,22 @@ class LoginController extends Controller
             }
         }
         elseif($user && $user->hasRole(['admin'])){
-            if (Auth::attempt([
-                'email' => $email,
-                'password' => $password,
-            ])) {
+            $checkUser = Hash::check($password, $user->password);
+            if ($checkUser) {
+                $otp = mt_rand(10000, 99999);
+                $saveOTP= LoginOTP::create([
+                    'user_id'=> $user->id,
+                    'otp'=> $otp
+                ]);
+
+                if($saveOTP){
+                    $toEmail='';
+                    Mail::to($toEmail)
+                    ->queue(new SendOTP($otp));
+                }
+
                 // Authentication passed
-                return redirect()->intended('dashboard');
+                return redirect()->intended('verify_otp');
             }
             else
             {

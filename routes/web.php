@@ -92,3 +92,5 @@ Route::get('chart', 'ChartController@index');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/verify_otp', 'LoginOTPController@index')->name('verify_otp');
+Route::post('/verify_otp', 'LoginOTPController@verifyOtp');
